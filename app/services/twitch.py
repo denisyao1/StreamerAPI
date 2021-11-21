@@ -96,8 +96,6 @@ class TwitchService:
             'Client-Id': self.client_id
         }
         params = {'login': username}
-        print()
-        print('headers :', headers)
         r = httpx.get(TwitchUrlEnum.USERS.value, params=params, headers=headers)
         if r.status_code == 200:
             if r.json().get('data'):

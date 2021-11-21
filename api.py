@@ -8,7 +8,7 @@ from app.schemas.ma import ma
 from app.load_env import load_env
 
 app = Flask(__name__)
-app.config.from_object('app.config.Dev')
+app.config.from_object('app.config.Development')
 api = Api(app)
 migrate = Migrate(app, db)
 db.init_app(app)
