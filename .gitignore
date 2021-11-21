@@ -127,3 +127,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# sqllite db
+streamer.db
+
+# token file
+app/token.json
+
+#pycharm folder
+.idea

@@ -3,11 +3,9 @@ from flask_migrate import Migrate
 from flask_restful import Api
 
 from app.models.db import db
+from app.resources.streamer import StreamerList, Streamer
 from app.schemas.ma import ma
-from app.resources.sample import HelloWorld
-from app.models.streamer import StreamerModel
-from app.schemas.streamer import StreamerSchema
-from app.resources.streamer import StreamerList
+from app.load_env import load_env
 
 app = Flask(__name__)
 app.config.from_object('app.config.Dev')
@@ -15,9 +13,10 @@ api = Api(app)
 migrate = Migrate(app, db)
 db.init_app(app)
 ma.init_app(app)
+load_env()
 
-api.add_resource(HelloWorld, '/hello')
-# api.add_resource(StreamerList, '/streamers')
+api.add_resource(StreamerList, '/streamers/')
+api.add_resource(Streamer, '/streamers/<string:username>')
 
 if __name__ == '__main__':
     app.run()
