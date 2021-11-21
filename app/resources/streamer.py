@@ -1,32 +1,51 @@
 from traceback import print_exc
 
-from flask import request, jsonify
 from flask_restful import Resource
-
-from app.schemas.streamer import StreamerSchema
-from app.models.streamer import StreamerModel
 from marshmallow.exceptions import ValidationError
-from app.services.twitch import TwitchAPIService
+
+from app.models.streamer import StreamerModel
+from app.schemas.streamer import StreamerSchema
+from app.services.twitch import TwitchService
 
 
 class StreamerList(Resource):
+    """
+   Define the routing of HTTP methods for /streamers/ url.
+    """
     streamer_list_schema = StreamerSchema(many=True)
 
     @classmethod
     def get(cls):
+        """
+        Implements HTTP get method.
+        :return: json list of streamers
+        """
         return cls.streamer_list_schema.dump(StreamerModel.query.all())
 
 
 class Streamer(Resource):
+    """
+    Define the routing of HTTP methods for /streamers/<string:username> url.
+    """
     streamer_schema = StreamerSchema()
-    twitch_service = TwitchAPIService()
+    twitch_service = TwitchService()
 
     @classmethod
     def get(cls, username):
+        """
+        Implements HTTP get method.
+        :param username: the streamer username
+        :return: Information about the streamer
+        """
         return cls.streamer_schema.dump(StreamerModel.find_by_username(username))
 
     @classmethod
     def post(cls, username: str):
+        """
+        Implements HTTP post method. Add new streamer to database.
+        :param username: the streamer username
+        :return: Information about streamer
+        """
         if StreamerModel.find_by_username(username):
             return {'message': f'{username} already exits in the database.'}, 400
         try:
@@ -45,6 +64,11 @@ class Streamer(Resource):
 
     @classmethod
     def delete(cls, username: str):
+        """
+        Implements delete HTTp method. Delete streamer from database
+        :param username: the streamer username
+        :return: success message
+        """
         streamer: StreamerModel = StreamerModel.find_by_username(username)
         if streamer:
             streamer.delete()

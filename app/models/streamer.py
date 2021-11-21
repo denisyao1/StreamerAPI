@@ -6,6 +6,9 @@ from .db import db
 
 
 class StreamerModel(db.Model):
+    """
+    Streamer Database's table  SQLAlchemy schema.
+    """
     __tablename__ = 'streamer'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -20,16 +23,28 @@ class StreamerModel(db.Model):
         self.profile_picture_url = profile_picture_url
 
     def __repr__(self) -> str:
+        """
+        Represent streamer instance as a string.
+        """
         return f"<streamer {self.id} - {self.platform} - {self.username}>"
 
     @classmethod
     def find_by_username(cls, username: str) -> StreamerModel:
+        """
+        Get streamer by it's username.
+        """
         return cls.query.filter_by(username=username).first()
 
-    def save_to_db(self):
+    def save_to_db(self) -> None:
+        """
+        Save streamer instance to database.
+        """
         db.session.add(self)
         db.session.commit()
 
-    def delete(self):
+    def delete(self) -> None:
+        """
+        Delete streamer instance from database.
+        """
         db.session.delete(self)
         db.session.commit()

@@ -13,8 +13,11 @@ api = Api(app)
 migrate = Migrate(app, db)
 db.init_app(app)
 ma.init_app(app)
+
+# load env file
 load_env()
 
+# link resources to url
 api.add_resource(StreamerList, '/streamers/')
 api.add_resource(Streamer, '/streamers/<string:username>')
 
