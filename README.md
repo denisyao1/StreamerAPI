@@ -17,7 +17,7 @@ Demo twitch streamers project implemented with flask-restful and postgresql
 3. run `docker-compose up` or `docker-compose up -d` if you want to run the project in detach mode.
 
 
-## Principaux Urls de l'api
- - GET localhost:5000/streamers :  Obtenir la liste des streamers
- - POST localhost :5000/streamers/{username} : Ajouter un streamer à la base de données
- - DELETE localhost :5000/streamers/{username} : Suppression d'un streamer de la base de données
+## Main endpoints of the API
+ - GET localhost:5000/streamers :  Get the list of streamers.
+ - POST localhost :5000/streamers/{username} : Add a streamer to the database.
+ - DELETE localhost :5000/streamers/{username} : Removing a streamer from the database.
