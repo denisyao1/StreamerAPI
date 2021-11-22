@@ -21,5 +21,21 @@ load_env()
 api.add_resource(StreamerList, '/streamers/')
 api.add_resource(Streamer, '/streamers/<string:username>')
 
+
+# sanity check route
+@app.route('/')
+def hello_world():
+    return 'Welcome to streamerAPI v1.0'
+
+
+# create all table before first request
+@app.before_first_request
+def db_create_all():
+    with app.app_context():
+        db.metadata.drop_all(bind=db.engine)
+        db.metadata.create_all(bind=db.engine)
+        db.session.commit()
+
+
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')

@@ -4,6 +4,9 @@ venv/
 # sql lite database
 streamer.db
 
+# migrations
+migrations/
+
 # some .env file
 .env.flask
 .env.example

@@ -15,7 +15,7 @@ class StreamerModel(db.Model):
     platform = db.Column(db.String, nullable=False)
     username = db.Column(db.String, nullable=False, unique=True)
     profile_picture_url = db.Column(db.String, nullable=False)
-    created_at = db.Column(db.DATETIME(timezone=True), default=func.now())
+    created_at = db.Column(db.TIMESTAMP(timezone=True), default=func.now())
 
     def __init__(self, platform: str, username: str, profile_picture_url: str):
         self.platform = platform
