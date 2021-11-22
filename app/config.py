@@ -4,6 +4,7 @@ from pathlib import Path
 # getting project root directory path
 PROJECT_DIR = Path(__file__).resolve().parent.parent
 
+
 class Config:
     """
     Base configuration class

@@ -1,0 +1,12 @@
+# venv folder
+venv/
+
+# sql lite database
+streamer.db
+
+# some .env file
+.env.flask
+.env.example
+
+# python module to load env.flask file
+load_flask_env.py
