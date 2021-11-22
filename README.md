@@ -1,6 +1,5 @@
 # StreamerAPI
 
----
 Demo twitch streamers project implemented with flask-restful and postgresql
 
 ## How to install
