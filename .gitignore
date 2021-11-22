@@ -134,5 +134,7 @@ streamer.db
 # token file
 app/token.json
 
+# migrations folders
+migrations/
 #pycharm folder
 .idea
